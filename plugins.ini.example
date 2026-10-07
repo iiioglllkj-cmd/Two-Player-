@@ -1,0 +1,5 @@
+; Merge into the existing CUSA00411 section.
+; Do not create a duplicate [CUSA00411] section.
+
+[CUSA00411]
+/data/GoldHEN/plugins/TP153.prx=true
