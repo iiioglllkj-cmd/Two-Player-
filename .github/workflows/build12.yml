@@ -1,0 +1,22 @@
+name: Build PS4 Plugin
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: OpenOrbispenorbispenorbis/toolchain:latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build PRX Plugin
+        run: |
+          make
+
+      - name: Upload PRX Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TP153-Plugin
+          path: TP153.prx
