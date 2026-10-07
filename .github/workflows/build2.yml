@@ -9,12 +9,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Setup PS4 SDK
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y clang llvm make build-essential git
-          git clone https://github.com/OpenPS4SDK/ps4sdk.git /opt/ps4sdk
-          echo "PS4SDK=/opt/ps4sdk" >> $GITHUB_ENV
+      - name: Setup OpenOrbis PS4 Toolchain
+        uses: OpenOrbis/toolchain-action@v1
 
       - name: Build PRX Plugin
         run: |
