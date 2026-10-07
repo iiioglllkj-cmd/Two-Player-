@@ -1,0 +1,27 @@
+name: Build PS4 Plugin
+
+on: [push, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup PS4 SDK
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang llvm make
+          git clone https://github.com/OpenPS4SDK/ps4sdk.git /opt/ps4sdk
+          echo "PS4SDK=/opt/ps4sdk" >> $GITHUB_ENV
+
+      - name: Build PRX Plugin
+        run: |
+          make
+
+      - name: Upload PRX Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: TP153-Plugin
+          path: TP153.prx
