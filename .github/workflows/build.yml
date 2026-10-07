@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup PS4 SDK
         run: |
           sudo apt-get update
-          sudo apt-get install -y clang llvm make
+          sudo apt-get install -y clang llvm make build-essential git
           git clone https://github.com/OpenPS4SDK/ps4sdk.git /opt/ps4sdk
           echo "PS4SDK=/opt/ps4sdk" >> $GITHUB_ENV
 
@@ -21,7 +21,8 @@ jobs:
           make
 
       - name: Upload PRX Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: TP153-Plugin
           path: TP153.prx
+
